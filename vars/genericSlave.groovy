@@ -8,8 +8,6 @@ import org.bbva.ketr.sharedLibraries.KETRUtilities
 def call(body) {
 	// evaluate the body block, and collect configuration into the object
 	def utils = new Utilidades(steps)
-	def utilsENVM = new ENVMUtilities(steps)
-	def utilsKYUF = new KYUFUtilities(steps)
 	def utilsKETR = new KETRUtilities(steps)
 	def config = [:]
 	body.resolveStrategy = Closure.DELEGATE_FIRST
@@ -70,12 +68,6 @@ def call(body) {
 							sh "${env.RUTA_SCRIPT_CI}/deleteRepository.sh ${jobName}"
 							steps.withCredentials([usernamePassword(credentialsId: UUAA,
 								usernameVariable: 'USER_ARTIFACTORY', passwordVariable: 'PASSWORD_ARTIFACTORY')]){
-									if (UUAA == "ENVM"){ 
-										utilsENVM.createPackage(env.WORKSPACE, config.MAVEN_VERSION, config.JAVA_VERSION)
-									}
-									if (UUAA == "KYUF"){ 
-										utilsKYUF.createPackage(env.WORKSPACE, config.MAVEN_VERSION, config.JAVA_VERSION)
-									}
 									if (UUAA == "KETR"){
 										utilsKETR.createPackage(env.WORKSPACE, config.MAVEN_VERSION, config.JAVA_VERSION)
 										
@@ -85,12 +77,6 @@ def call(body) {
 						
 						if (DEPLOYMENT_TASK == "YES" || AUTO_DEPLOY == "YES"){
 							stage ('Create release structure'){
-								if (UUAA == "ENVM"){ 
-									utilsENVM.createReleaseStructure(env.WORKSPACE, UUAA)
-								}
-								if (UUAA == "KYUF"){ 
-									utilsKYUF.createReleaseStructure(env.WORKSPACE, UUAA)
-								}
 								if (UUAA == "KETR"){ 
 									utilsKETR.createReleaseStructure(env.WORKSPACE, UUAA)
 								}
