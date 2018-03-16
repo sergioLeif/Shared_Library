@@ -12,7 +12,7 @@ def call(body) {
 	body.delegate = config
 	body()
 	// now build, based on the configuration provided
-	node () {
+	node (config.NODO) {
 		//def String jobName = env.JOB_NAME.replace("/", "_")
 		def String UUAA = config.UUAA.toUpperCase()
 		
