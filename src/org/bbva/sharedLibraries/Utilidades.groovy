@@ -1,6 +1,6 @@
 package org.bbva.sharedLibraries
 
-@GrabResolver(name='CENTRAL', root='http://cibartifactory.igrupobbva:8084/artifactory/repo1' , m2Compatible=true)
+@GrabResolver(name='CENTRAL', root='http://urlPrueba:8085/artifactory/repo1' , m2Compatible=true)
 @Grapes(
     @Grab(group='org.jfrog.artifactory.client', module='artifactory-java-client-services', version='0.16')
 )
@@ -78,8 +78,7 @@ class Utilidades implements Serializable {
         steps.sh " echo [ReleaseNumber] El valor del repositorio es ${REPO}"
         steps.sh " echo [ReleaseNumber] El valor del repositorio es ${FOLDER}"
         
-        //Artifactory artifactory = ArtifactoryClient.create("http://cibartifactory.igrupobbva:8084/artifactory/repo1", "xparti1p", "AP41k1dGkPms1ZpncGyB41xCFB6")
-		Artifactory artifactory = ArtifactoryClient.create("http://cipdartifactory.igrupobbva:8083/artifactory/repo1", "xparti1d", "AP4SnqF8XZZVhZXd5NF1ifgeD7K")
+ 		Artifactory artifactory = ArtifactoryClient.create("http://urlPrueba:8083/artifactory/repo1", "user", "passuser")
         try {
             Folder folder = artifactory.repository(REPO).folder(FOLDER).info()
             childrenItemsSize = folder.getChildren().size()

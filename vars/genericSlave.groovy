@@ -48,7 +48,7 @@ def call(body) {
 		def String release = 'NO'
 		def String sonar = ''
 		def String ISSUE_KEY = ''
-		def String ArtifactoryURL = 'http://cipdartifactory.igrupobbva:8083/artifactory'
+		def String ArtifactoryURL = 'http://urlPrueba:8085/artifactory'
 		def String JAVA = "tool ${config.JAVA_VERSION}"
 		//def  = (env.BRANCH_NAME).split("/").(2);
 		def server
