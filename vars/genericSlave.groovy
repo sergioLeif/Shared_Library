@@ -1,8 +1,6 @@
 //generic.groovy
 
 import org.bbva.sharedLibraries.Utilidades
-import org.bbva.envm.sharedLibraries.ENVMUtilities
-import org.bbva.kyuf.sharedLibraries.KYUFUtilities
 import org.bbva.ketr.sharedLibraries.KETRUtilities
 
 def call(body) {
