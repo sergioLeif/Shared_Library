@@ -15,7 +15,7 @@ def call(body) {
 	node (config.NODO) {
 		sh "sudo /home/vagrant/docker-compose up &"
 		sh "sleep 4"
-		sh "sudo /home/vagrant/docker-compose exec slave sh"
+		sh "sudo docker exec -it jenkins_slave sh"
 		//def String jobName = env.JOB_NAME.replace("/", "_")
 		def String UUAA = config.UUAA.toUpperCase()
 		
