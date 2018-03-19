@@ -13,7 +13,8 @@ def call(body) {
 	body()
 	// now build, based on the configuration provided
 	node (config.NODO) {
-		sh "sudo /home/vagrant/docker-compose up"
+		sh "sudo /home/vagrant/docker-compose up &"
+		sh "sudo docker exec -it jenkins_slave /bin/bash"
 		//def String jobName = env.JOB_NAME.replace("/", "_")
 		def String UUAA = config.UUAA.toUpperCase()
 		
