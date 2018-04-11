@@ -12,6 +12,9 @@ def call(body) {
 	body()
 	// now build, based on the configuration provided
 	node (config.NODO) {
+		
+		sh "echo el usuario es:"
+		sh "whoami"
 		docker.image('xva_slave').inside {
 		/**
 		 * DEFINICION DE VARIBLES
