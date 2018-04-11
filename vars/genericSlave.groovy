@@ -1,10 +1,10 @@
-import org.bbva.sharedLibraries.UtilidadesSlave
-import org.bbva.ketr.sharedLibraries.KETRUtilitiesSlave
+import org.bbva.sharedLibraries.Utilidades
+import org.bbva.ketr.sharedLibraries.KETRUtilities
 
 def call(body) {
 	// evaluate the body block, and collect configuration into the object
-	def utils = new UtilidadesSlave(steps)
-	def utilsKETR = new KETRUtilitiesSlave(steps)
+	def utils = new Utilidades(steps)
+	def utilsKETR = new KETRUtilities(steps)
 	def config = [:]
 
 	body.resolveStrategy = Closure.DELEGATE_FIRST
