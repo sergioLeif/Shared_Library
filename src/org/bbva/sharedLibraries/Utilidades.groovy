@@ -15,8 +15,8 @@ import org.jfrog.artifactory.client.model.Folder;
 class Utilidades implements Serializable {
     
 	def steps
-	def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
-    
+	//def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
+        def envVars = "hello"
 	/**
 	 * Constructor
 	 * 
