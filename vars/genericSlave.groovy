@@ -71,13 +71,13 @@ def call(body) {
 						stage ('Package'){
 							sh "echo Package"
 							//sh "${SCRIPTS_CI}/deleteRepository.sh ${jobName}"
-							steps.withCredentials([usernamePassword(credentialsId: UUAA,
-								usernameVariable: 'USER_ARTIFACTORY', passwordVariable: 'PASSWORD_ARTIFACTORY')]){
+							//steps.withCredentials([usernamePassword(credentialsId: UUAA,
+								//usernameVariable: 'USER_ARTIFACTORY', passwordVariable: 'PASSWORD_ARTIFACTORY')]){
 									if (UUAA == "KETR"){
 										//utilsKETR.createPackage(env.WORKSPACE, config.MAVEN_VERSION, config.JAVA_VERSION)
 										
 									}
-								}
+								//}
 						}
 						
 						if (DEPLOYMENT_TASK == "YES" || AUTO_DEPLOY == "YES"){
