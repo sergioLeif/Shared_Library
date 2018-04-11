@@ -13,9 +13,9 @@ def call(body) {
 	body()
 	// now build, based on the configuration provided
 	node (config.NODO) {
-		sh "sudo /home/vagrant/docker-compose up &"
-		sh "sleep 4"
-		sh "sudo docker exec -i jenkins_slave sh"
+		//sh "sudo /home/vagrant/docker-compose up &"
+		//sh "sleep 4"
+		//sh "sudo docker exec -i jenkins_slave sh"
 		//def String jobName = env.JOB_NAME.replace("/", "_")
 		def String UUAA = config.UUAA.toUpperCase()
 		
@@ -79,12 +79,12 @@ def call(body) {
 						if (DEPLOYMENT_TASK == "YES" || AUTO_DEPLOY == "YES"){
 							stage ('Create release structure'){
 								if (UUAA == "KETR"){ 
-									utilsKETR.createReleaseStructure(env.WORKSPACE, UUAA)
+									//utilsKETR.createReleaseStructure(env.WORKSPACE, UUAA)
 								}
 							}
 						
 							stage ('Deploy release to artifactory'){
-								utils.subidaArtifactory(UUAA, rutaBinario, config.DEPLOY_TYPE, jobName, AUTO_DEPLOY, env.BRANCH_NAME, env.JOB_NAME, CIRCUITO)
+								//utils.subidaArtifactory(UUAA, rutaBinario, config.DEPLOY_TYPE, jobName, AUTO_DEPLOY, env.BRANCH_NAME, env.JOB_NAME, CIRCUITO)
 							}
 						}
 						
@@ -125,14 +125,14 @@ def call(body) {
 						
 						if (DEPLOYMENT_TASK == "YES"){
 							stage ('Create deployment issue'){
-									ISSUE_KEY=utils.createDeploymentIssue(jobName, config.LAST_TAG, config.JIRA_PROJECT_ID, AUTO_DEPLOY, UUAA, config.DEPLOYMENT_PLAN, config.JIRA_AFFECTED_VERSION, env.BRANCH_NAME, env.BUILD_NUMBER, UPDATE_SENSITIVE_INFORMATION, DEPLOY_TYPE)
+								//ISSUE_KEY=utils.createDeploymentIssue(jobName, config.LAST_TAG, config.JIRA_PROJECT_ID, AUTO_DEPLOY, UUAA, config.DEPLOYMENT_PLAN, config.JIRA_AFFECTED_VERSION, env.BRANCH_NAME, env.BUILD_NUMBER, UPDATE_SENSITIVE_INFORMATION, DEPLOY_TYPE)
 							}
 						}
 						
 						if (AUTO_DEPLOY == "YES"){
 							stage ('Auto deploy'){
 								sh "echo AutoDeploy"
-								utils.deployApp(ISSUE_KEY, UUAA, DEPLOYMENT_TASK, jobName, env.BUILD_NUMBER, config.DEPLOYMENT_PLAN, env.BRANCH_NAME, config.ENVIRONMENT, UPDATE_SENSITIVE_INFORMATION)
+								//utils.deployApp(ISSUE_KEY, UUAA, DEPLOYMENT_TASK, jobName, env.BUILD_NUMBER, config.DEPLOYMENT_PLAN, env.BRANCH_NAME, config.ENVIRONMENT, UPDATE_SENSITIVE_INFORMATION)
 							}
 						}
 					},
