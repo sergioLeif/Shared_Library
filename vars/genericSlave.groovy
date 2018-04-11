@@ -64,7 +64,7 @@ def call(body) {
 			if(utils.validateBranchName(env.BRANCH_NAME)){
 				ws (workspace) {
 					stage ('Donwload Sources') {
-						utils.downLoadSources(config.GIT_REPO_URL, jobName, env.BRANCH_NAME, JH)
+						//utils.downLoadSources(config.GIT_REPO_URL, jobName, env.BRANCH_NAME, JH)
 					}
 					
 					parallel package: {
