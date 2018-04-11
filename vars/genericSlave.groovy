@@ -12,7 +12,7 @@ def call(body) {
 	body()
 	// now build, based on the configuration provided
 	node (config.NODO) {
-
+		docker.image('xva_slave').inside {
 		/**
 		 * DEFINICION DE VARIBLES
 		 */
@@ -202,6 +202,7 @@ def call(body) {
 		//	sh "echo UUAA is wrong"
 		//	sh "exit -1"
 		//}
+		}
 	}
 }
 
