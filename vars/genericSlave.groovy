@@ -51,6 +51,7 @@ def call(body) {
 		if (config.UPDATE_SENSITIVE_INFORMATION != null) UPDATE_SENSITIVE_INFORMATION = config.UPDATE_SENSITIVE_INFORMATION.toUpperCase()
 		else UPDATE_SENSITIVE_INFORMATION = 'NO'
 		
+		sh "mkdir -p ${workspace}"
 		
 		/** 
 		 * FIJAR QUE SOLO SE GUARDEN x EJECUCIONES 
