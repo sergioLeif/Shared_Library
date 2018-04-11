@@ -127,13 +127,14 @@ def call(body) {
 						
 						if (DEPLOYMENT_TASK == "YES"){
 							stage ('Create deployment issue'){
-									ISSUE_KEY=utils.createDeploymentIssue(jobName, config.LAST_TAG, config.JIRA_PROJECT_ID, AUTO_DEPLOY, UUAA, config.DEPLOYMENT_PLAN, config.JIRA_AFFECTED_VERSION, env.BRANCH_NAME, env.BUILD_NUMBER, UPDATE_SENSITIVE_INFORMATION, config.DEPLOY_TYPE, SCRIPTS_DEVOPS)
+								sleep 5
+									//ISSUE_KEY=utils.createDeploymentIssue(jobName, config.LAST_TAG, config.JIRA_PROJECT_ID, AUTO_DEPLOY, UUAA, config.DEPLOYMENT_PLAN, config.JIRA_AFFECTED_VERSION, env.BRANCH_NAME, env.BUILD_NUMBER, UPDATE_SENSITIVE_INFORMATION, config.DEPLOY_TYPE, SCRIPTS_DEVOPS)
 							}
 						}
 				        
 						if (AUTO_DEPLOY == "YES"){
 							stage ('Auto deploy'){
-							    utils.deployApp(ISSUE_KEY, UUAA, DEPLOYMENT_TASK, jobName, env.BUILD_NUMBER, config.DEPLOYMENT_PLAN, config.ENVIRONMENT, UPDATE_SENSITIVE_INFORMATION, SCRIPTS_DEVOPS)
+							    //utils.deployApp(ISSUE_KEY, UUAA, DEPLOYMENT_TASK, jobName, env.BUILD_NUMBER, config.DEPLOYMENT_PLAN, config.ENVIRONMENT, UPDATE_SENSITIVE_INFORMATION, SCRIPTS_DEVOPS)
 							}
 						}
 						
