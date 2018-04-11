@@ -114,9 +114,9 @@ class Utilidades implements Serializable {
 	 * @param JOBNAME.- this is the job's name, usually taken from env
 	 * @param BRANCH_NAME.- branch to checkout in the git repository
 	 */
-    def downLoadSources(GIT_REPO_URL, JOBNAME, BRANCH_NAME){
-        def JH = envVars['JENKINS_HOME']
-        def GIT_CREDENTIALS_ID = 'DownloadGit'
+    def downLoadSources(GIT_REPO_URL, JOBNAME, BRANCH_NAME, JH){
+        //def JH = envVars['JENKINS_HOME']
+        def GIT_CREDENTIALS_ID = 'gitlab'
         steps.sh "rm -rf ${JH}/jobs/${JOBNAME}/workspace/*"
         steps.git  branch: BRANCH_NAME, credentialsId: GIT_CREDENTIALS_ID, url: GIT_REPO_URL
         steps.sh "rm -rf ${JH}/workspace/${JOBNAME}*"
