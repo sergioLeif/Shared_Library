@@ -11,9 +11,9 @@ def call(body) {
 	body.delegate = config
 	body()
 	// now build, based on the configuration provided
-	dockerNode ('docker') {
-		sh "docker run --name jenkins_slave jenkins/jnlp-slave -url http://192.168.2.127:8080 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
-		sh "docker exec -i jenkins_slave /bin/bash"
+	node (config.NODO) {
+		sh "docker run jenkins/jnlp-slave -url http://192.168.2.127:8080 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave"
+		//sh "docker exec -i jenkins_slave /bin/bash"
 		sh "echo el usuario es:"
 		sh "whoami"
 		//docker.image('xva_slave').inside {
