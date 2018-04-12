@@ -15,7 +15,7 @@ def call(body) {
 		
 		sh "echo el usuario es:"
 		sh "whoami"
-		docker.image('xva_slave').inside {
+		//docker.image('xva_slave').inside {
 		/**
 		 * DEFINICION DE VARIBLES
 		 */
@@ -205,7 +205,7 @@ def call(body) {
 		//	sh "echo UUAA is wrong"
 		//	sh "exit -1"
 		//}
-		}
+		//}
 	}
 }
 
