@@ -7,7 +7,7 @@ def call(body) {
 	def utilsKETR = new KETRUtilities(steps)
 	def config = [:]
 	
-	sleep 5
+	sleep 15
 	body.resolveStrategy = Closure.DELEGATE_FIRST
 	body.delegate = config
 	body()
