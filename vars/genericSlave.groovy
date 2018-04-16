@@ -11,8 +11,9 @@ def call(body) {
 	body.delegate = config
 	body()
 	// now build, based on the configuration provided
-	//node (config.NODO) {
-	dockerNode('jnlp'){
+	docker.image('jenkins/jnlp-slave').inside {
+	node (config.NODO) {
+	//dockerNode('jnlp'){
 		//sleep 30
 		//sh "docker run --name jenkins_slave jenkins/jnlp-slave -url http://192.168.2.127:8080 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
 		//sh "docker exec -i jenkins_slave bash"
@@ -209,7 +210,7 @@ def call(body) {
 		//	sh "echo UUAA is wrong"
 		//	sh "exit -1"
 		//}
-		//}
+		}
 	}
 }
 
