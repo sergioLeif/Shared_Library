@@ -2,7 +2,6 @@ import org.bbva.sharedLibraries.Utilidades
 import org.bbva.ketr.sharedLibraries.KETRUtilities
 
 def call(body) {
-	sleep 30
 	// evaluate the body block, and collect configuration into the object
 	def utils = new Utilidades(steps)
 	def utilsKETR = new KETRUtilities(steps)
@@ -13,6 +12,7 @@ def call(body) {
 	body()
 	// now build, based on the configuration provided
 	node (config.NODO) {
+		sleep 30
 		//sh "docker run --name jenkins_slave jenkins/jnlp-slave -url http://192.168.2.127:8080 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
 		//sh "docker exec -i jenkins_slave bash"
 		//sh "touch prueba"
