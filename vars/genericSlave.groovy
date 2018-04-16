@@ -200,8 +200,8 @@ def call(body) {
 					
 				}
 			//}else{
-				sh "echo Branch has some strange character"
-				sh "exit -1"
+				//sh "echo Branch has some strange character"
+				//sh "exit -1"
 			//}
 		//}else{
 		//	sh "echo UUAA is wrong"
