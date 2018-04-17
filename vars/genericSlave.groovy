@@ -15,7 +15,7 @@ def call(body) {
 	node (config.NODO) {
 	//dockerNode('docker'){
 		//sleep 30
-		sh "docker run -ti jenkins/jnlp-slave:latest /bin/bash"
+		sh "docker run -i jenkins/jnlp-slave:latest /bin/bash"
 		//sh "docker run --name jenkins_slave jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
 		//sh "docker exec -i jenkins_slave bash"
 		//sh "touch prueba"
