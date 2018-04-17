@@ -11,9 +11,10 @@ def call(body) {
 	body.delegate = config
 	body()
 	// now build, based on the configuration provided
-	docker.image('jenkins/jnlp-slave').inside {
-		sleep 30
-	node (config.NODO) {
+	//docker.image('jenkins/jnlp-slave').inside {
+	sh "docker run --name jenkins_slave jenkins/jnlp-slave -url http://192.168.2.127:8080 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
+	sleep 30
+	node ('slave') {
 	//dockerNode('jnlp'){
 		//sleep 30
 		//sh "docker run --name jenkins_slave jenkins/jnlp-slave -url http://192.168.2.127:8080 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
@@ -21,7 +22,6 @@ def call(body) {
 		//sh "touch prueba"
 		sh "echo el usuario es:"
 		sh "whoami"
-		//docker.image('xva_slave').inside {
 		/**
 		 * DEFINICION DE VARIBLES
 		 */
@@ -211,7 +211,7 @@ def call(body) {
 		//	sh "echo UUAA is wrong"
 		//	sh "exit -1"
 		//}
-		}
+		//}
 	}
 }
 
