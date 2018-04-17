@@ -12,6 +12,7 @@ def call(body) {
 	body()
 	// now build, based on the configuration provided
 	docker.image('jenkins/jnlp-slave').inside {
+		sleep 30
 	node (config.NODO) {
 	//dockerNode('jnlp'){
 		//sleep 30
