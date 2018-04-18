@@ -12,7 +12,7 @@ def call(body) {
 	body()
 	// now build, based on the configuration provided
 	//docker.image('jenkins/jnlp-slave').inside {
-	node (config.NODO) {
+	//node (config.NODO) {
 	docker-node(image: 'jenkins/jnlp-slave'){
 		//sleep 30
 		//sh "docker run -i jenkins/jnlp-slave:latest /bin/bash"
@@ -210,7 +210,7 @@ def call(body) {
 		//	sh "echo UUAA is wrong"
 		//	sh "exit -1"
 		//}
-		}
+		//}
 	}
 }
 
