@@ -63,7 +63,7 @@ def call(body) {
 		/** 
 		 * FIJAR QUE SOLO SE GUARDEN x EJECUCIONES 
 		 */
-		properties([[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '2']]]);
+		//properties([[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '2']]]);
 
 		/**
 		 * ESTRUCTURA DE LA PIPELINE
