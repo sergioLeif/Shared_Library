@@ -14,6 +14,7 @@ def call(body) {
 	//docker.image('jenkins/jnlp-slave').inside {
 	node{
 		def containerID = sh "docker run -d --rm jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
+		sh "echo el valor del containerID es: $containerID"
 	node ('slave') {
 	//docker-node(image: 'jenkins/jnlp-slave'){
 		//sh "touch prueba"
