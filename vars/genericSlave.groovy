@@ -13,8 +13,8 @@ def call(body) {
 	// now build, based on the configuration provided
 	//docker.image('jenkins/jnlp-slave').inside {
 	node{
-		sh "docker run -d --rm --name ${config.UUAA}_$env.BRANCH_NAME jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
-	}
+		def date = new Date()
+		sh "docker run -d --rm --name ${config.UUAA}_${date} jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
 	node ('slave') {
 	//docker-node(image: 'jenkins/jnlp-slave'){
 		//sh "touch prueba"
@@ -210,6 +210,7 @@ def call(body) {
 		//	sh "exit -1"
 		//}
 		//}
+	}
 	}
 }
 
