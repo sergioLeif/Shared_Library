@@ -12,7 +12,7 @@ def call(body) {
 	body()
 	// now build, based on the configuration provided
 	//docker.image('jenkins/jnlp-slave').inside {
-	properties([[$class: 'withDockerContainer', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '2']]]);
+	//properties([[$class: 'withDockerContainer', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '2']]]);
 	node ('slave') {
 	//docker-node(image: 'jenkins/jnlp-slave'){
 		//sleep 30
