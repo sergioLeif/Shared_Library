@@ -15,9 +15,9 @@ def call(body) {
 	node{
 		//def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
 		def date = new Date().format("yyyyMMddHHmmss")
-		//def containerID = "${config.UUAA}_${env.BRANCH_NAME}-${date}"
-		def containerID = "${config.UUAA}_${env.BRANCH_NAME}"
-		sh "docker run -d --rm -p 22 -p 80 --name ${containerID} jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave"
+		def containerID = "${config.UUAA}_${env.BRANCH_NAME}-${date}"
+		//def containerID = "${config.UUAA}_${env.BRANCH_NAME}"
+		sh "docker run -d --rm -p 22 -p 80 --name ${containerID} jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
 	node ('slave') {
 	//docker-node(image: 'jenkins/jnlp-slave'){
 		//sh "touch prueba"
