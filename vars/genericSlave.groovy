@@ -213,7 +213,7 @@ def call(body) {
 		//}
 		//}
 		}
-		sh "docker stop ${config.UUAA}_${date}
+		sh "docker stop ${containerID}"
 	}
 }
 
