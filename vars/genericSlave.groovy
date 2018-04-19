@@ -210,7 +210,7 @@ def call(body) {
 		//	sh "exit -1"
 		//}
 		//}
-		exit 0
+		sh "exit 0"
 	}
 }
 
