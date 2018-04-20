@@ -67,7 +67,7 @@ def call(body) {
 		 * ESTRUCTURA DE LA PIPELINE
 		 */
 		//if(utils.validateUUAA(config.GIT_REPO_URL, UUAA)){
-			//if(utils.validateBranchName(env.BRANCH_NAME)){
+			if(utils.validateBranchName(env.BRANCH_NAME)){
 				ws (workspace) {
 					stage ('Donwload Sources') {
 						//utils.downLoadSources(config.GIT_REPO_URL, jobName, env.BRANCH_NAME, JH)
@@ -200,10 +200,10 @@ def call(body) {
 					}
 					
 				}
-			//}else{
-				//sh "echo Branch has some strange character"
-				//sh "exit -1"
-			//}
+			}else{
+				sh "echo Branch has some strange character"
+				sh "exit -1"
+			}
 		//}else{
 		//	sh "echo UUAA is wrong"
 		//	sh "exit -1"
