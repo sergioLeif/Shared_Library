@@ -17,7 +17,7 @@ def call(body) {
 		def date = new Date().format("yyyyMMddHHmmss")
 		def containerID = "${config.UUAA}_${env.BRANCH_NAME}-${date}"
 		//sh "docker run -d --rm --name ${containerID} jenkins/jnlp-slave -v /var/run/docker.sock:/var/run/docker.sock -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
-		sh "docker run --rm --name agent1 xva_slave:latest"
+		sh "docker run --rm --name agent1 xva_slave:latest &"
 		sh "docker exec agent1 'java -jar /home/jenkins/slave.jar'"
 	node ('slave') {
 	//docker-node(image: 'jenkins/jnlp-slave'){
