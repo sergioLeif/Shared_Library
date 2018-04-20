@@ -10,16 +10,15 @@ def call(body) {
 	body.resolveStrategy = Closure.DELEGATE_FIRST
 	body.delegate = config
 	body()
-	slave{ dockerfile true}
 	// now build, based on the configuration provided
 	//docker.image('jenkins/jnlp-slave').inside {
 	node{
 		def date = new Date().format("yyyyMMddHHmmss")
 		def containerID = "${config.UUAA}_${env.BRANCH_NAME}-${date}"
 		//sh "docker run -d --rm --name ${containerID} jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
-		//sh "docker run --rm --name ${containerID} xva_slave:latest &"
-		//sh "docker exec -d ${containerID} java -jar /home/jenkins/slave.jar -jnlpUrl http://192.168.2.127:8080/computer/jenkins-slave/slave-agent.jnlp -secret 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048"
-	//node ('slave') {
+		sh "docker run --rm --name ${containerID} xva_slave:latest &"
+		sh "docker exec -d ${containerID} java -jar /home/jenkins/slave.jar -jnlpUrl http://192.168.2.127:8080/computer/jenkins-slave/slave-agent.jnlp -secret 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048"
+	node ('slave') {
 		/**
 		 * DEFINICION DE VARIBLES
 		 */
@@ -210,9 +209,7 @@ def call(body) {
 		//	sh "exit -1"
 		//}
 		//}
-		//}
-		//sh "docker stop ${containerID}"
+		}
+		sh "docker stop ${containerID}"
 	}
 }
-
-
