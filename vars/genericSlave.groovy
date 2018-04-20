@@ -10,6 +10,7 @@ def call(body) {
 	body.resolveStrategy = Closure.DELEGATE_FIRST
 	body.delegate = config
 	body()
+	docker{ dockerfile true}
 	// now build, based on the configuration provided
 	//docker.image('jenkins/jnlp-slave').inside {
 	node{
