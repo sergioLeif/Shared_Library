@@ -215,7 +215,7 @@ def call(body) {
 		//}
 		//}
 		}
-		sh "docker stop ${containerID}"
+		//sh "docker stop ${containerID}"
 	}
 }
 
