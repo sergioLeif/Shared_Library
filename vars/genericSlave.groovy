@@ -18,10 +18,11 @@ def call(body) {
 		//sh "docker run -d --rm --name ${containerID} jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
 		//sh "docker run --rm --name ${containerID} xva_slave:latest &"
 		//sh "docker exec -d ${containerID} /opt/java/jdk1.8.0_131/bin/java -jar /home/jenkins/agent.jar -jnlpUrl http://192.168.2.127:8080/computer/jenkins-slave/slave-agent.jnlp -secret 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048"
-	node ('xva') {
+	node ('jnlp') {
 		/**
 		 * DEFINICION DE VARIBLES
 		 */
+		sleep 90
 		jdk = tool name: "${config.JAVA_VERSION}"
 		env.JAVA_HOME="${jdk}"
 		def String UUAA = config.UUAA.toUpperCase()
