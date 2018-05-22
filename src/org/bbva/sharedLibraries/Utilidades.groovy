@@ -1,4 +1,4 @@
-package org.bbva.sharedLibraries
+package org.specific.sharedLibraries
 
 @GrabResolver(name='CENTRAL', root='http://urlPrueba:8085/artifactory/repo1' , m2Compatible=true)
 @Grapes(
@@ -38,7 +38,7 @@ class Utilidades implements Serializable {
     def executeQA(ARQUITECTURA, LENGUAJE, UUAA, JOB, BRANCH_NAME){
         def RSQA = envVars['RUTA_SCRIPT_SQA']
         def ARTIFACTORY_USER = steps.sh "echo ${UUAA}|tr '[A-Z]' '[a-z]'"
-        def ARTIFACTORY_PASSWORD = UUAA + '99app'
+        def ARTIFACTORY_PASSWORD = UUAA + 'pass'
         steps.sh "echo ${ARTIFACTORY_PASSWORD}"
         steps.sh "${RSQA}/sonarModularBloqueante.nuevo.sh $ARQUITECTURA $LENGUAJE $ARTIFACTORY_USER $ARTIFACTORY_PASSWORD $UUAA $JOB $BRANCH_NAME"
     }
@@ -48,14 +48,14 @@ class Utilidades implements Serializable {
 	 */
     def String informQA(script, JOB){
         //def BN = script.env.BUILD_NUMBER
-        //def String ISSUE = new File('/usr/local/pr/jenkins/CJE_1X/scripts/DEVOPS/tmp/'+JOB+BN+'.txt').text.trim()
+        //def String ISSUE = new File('/PATH/scripts/DEVOPS/tmp/'+JOB+BN+'.txt').text.trim()
         //def JN_PADRE = script.env.JOB_NAME.split("/")[0]
         //def BRANCH_NAME = script.env.BRANCH_NAME
         //def RUTA_LOGS = script.env.JENKINS_HOME+'/jobs/'+JN_PADRE+'/branches/'+BRANCH_NAME+'/builds/'+BN+'/log'
         //def RS = envVars['RUTA_SCRIPT_DEVOPS']
         //steps.sh "grep -o 'Codigo:[0-9]' -m1 ${RUTA_LOGS} >> ${script.env.JENKINS_HOME}/scripts/DEVOPS/tmp/${JOB}${BN}_QA.txt"
         
-        //def String QA_STATUS = new File('/usr/local/pr/jenkins/CJE_1X/scripts/DEVOPS/tmp/'+JOB+BN+'_QA.txt').text.trim()
+        //def String QA_STATUS = new File('/PATH/scripts/DEVOPS/tmp/'+JOB+BN+'_QA.txt').text.trim()
         
         //steps.sh  "${RS}/updateInformationSQA.sh ${ISSUE} ${QA_STATUS}"
         def String QA_STATUS = 'ok'
@@ -164,10 +164,10 @@ class Utilidades implements Serializable {
     def String createDeploymentIssue(JOB, LAST_TAG, JIRA_PROJECT_ID, AUTO_DEPLOY, UUAA, DEPLOYMENT_PLAN, JIRA_AFFECTED_VERSION, BRANCH_NAME, BUILD_NUMBER, UPDATE_SENSITIVE_INFORMATION, DEPLOY_TYPE){
 		def String ISSUE = null
 		if(BRANCH_NAME == "master" || BRANCH_NAME.contains("release") || BRANCH_NAME.contains("hotfix")){
-			steps.withCredentials([[$class: 'StringBinding', credentialsId: 'CA_RA', variable: 'CLAVE']]) {
+			steps.withCredentials([[$class: 'StringBinding', credentialsId: 'NAME_CREDENTIAL', variable: 'CLAVE']]) {
 				def RS = envVars['RUTA_SCRIPT_DEVOPS']
 				steps.sh  "${RS}/createDeploymentLinkedIssue.sh ${JOB} ${BUILD_NUMBER} ${LAST_TAG} ${JIRA_PROJECT_ID} ${AUTO_DEPLOY} ${UUAA} ${DEPLOYMENT_PLAN} ${JIRA_AFFECTED_VERSION} ${UPDATE_SENSITIVE_INFORMATION} ${DEPLOY_TYPE}"
-				//def File f = new File('/usr/local/pd/jenkins/CJE_M1/scripts/DEVOPS/tmp/'+JOB+BUILD_NUMBER+'.txt')
+				//def File f = new File('/PATH/scripts/DEVOPS/tmp/'+JOB+BUILD_NUMBER+'.txt')
 				def String Issue_Key_File = RS + "/tmp/" + JOB + BUILD_NUMBER + ".txt"
 				steps.sh " echo Valor de RUTA SCRIPTS ${RS}"
 				steps.sh " echo Valor de ISSUE KEY FILE ${Issue_Key_File}"
@@ -191,7 +191,7 @@ class Utilidades implements Serializable {
 	 * @param ENVIRONMENT
 	 */
 	def deployApplication(JOB, BUILD_NUMBER, CATEGORY, DEPLOYMENT_PLAN, UUAA, ENVIRONMENT){
-		steps.withCredentials([[$class: 'StringBinding', credentialsId: 'CA_RA', variable: 'CLAVE']]) {
+		steps.withCredentials([[$class: 'StringBinding', credentialsId: 'NAME_CREDENTIAL', variable: 'CLAVE']]) {
 		    def Date date = new Date()
 		    String FECHA = date.format("HHmmddMM")
             def RS = envVars['RUTA_SCRIPT_DEVOPS']
