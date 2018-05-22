@@ -1,10 +1,10 @@
-import org.bbva.sharedLibraries.Utilidades
-import org.bbva.ketr.sharedLibraries.KETRUtilities
+import org.site.sharedLibraries.Utilidades
+import org.site.specific.sharedLibraries.SpecificUtilities
 
 def call(body) {
 	// evaluate the body block, and collect configuration into the object
 	def utils = new Utilidades(steps)
-	def utilsKETR = new KETRUtilities(steps)
+	def utilsSpecific = new SpecificUtilities(steps)
 	def config = [:]
 	
 	body.resolveStrategy = Closure.DELEGATE_FIRST
@@ -15,9 +15,9 @@ def call(body) {
 	node{
 		def date = new Date().format("yyyyMMddHHmmss")
 		def containerID = "${config.UUAA}_${env.BRANCH_NAME}-${date}"
-		//sh "docker run -d --rm --name ${containerID} jenkins/jnlp-slave -url http://192.168.2.127:8080 -workDir=/home/jenkins/agent 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048 jenkins-slave &"
+		//sh "docker run -d --rm --name ${containerID} jenkins/jnlp-slave -url http://IP_MACHINE:8080 -workDir=/home/jenkins/agent SECRET_SLAVE SLAVE_NAME &"
 		//sh "docker run --rm --name ${containerID} xva_slave:latest &"
-		//sh "docker exec -d ${containerID} /opt/java/jdk1.8.0_131/bin/java -jar /home/jenkins/agent.jar -jnlpUrl http://192.168.2.127:8080/computer/jenkins-slave/slave-agent.jnlp -secret 05d9f81216df782f70cef38ff2ae25030c18188c27a36e6cea138ab3b6b14048"
+		//sh "docker exec -d ${containerID} /opt/java/jdk1.8.0_131/bin/java -jar /home/jenkins/agent.jar -jnlpUrl http://IP_MACHINE:8080/computer/SLAVE_NAME/slave-agent.jnlp -secret SECRET_SLAVE"
 	node ('xva') {
 		/**
 		 * DEFINICION DE VARIBLES
@@ -80,8 +80,8 @@ def call(body) {
 							//sh "${SCRIPTS_CI}/deleteRepository.sh ${jobName}"
 							//steps.withCredentials([usernamePassword(credentialsId: UUAA,
 								//usernameVariable: 'USER_ARTIFACTORY', passwordVariable: 'PASSWORD_ARTIFACTORY')]){
-									if (UUAA == "KETR"){
-										//utilsKETR.createPackage(env.WORKSPACE, config.MAVEN_VERSION, config.JAVA_VERSION)
+									if (UUAA == "SPECIFIC"){
+										//utilsSpecific.createPackage(env.WORKSPACE, config.MAVEN_VERSION, config.JAVA_VERSION)
 										
 									}
 								//}
@@ -89,8 +89,8 @@ def call(body) {
 						
 						if (DEPLOYMENT_TASK == "YES" || AUTO_DEPLOY == "YES"){
 							stage ('Create release structure'){
-								if (UUAA == "KETR"){ 
-									//utilsKETR.createReleaseStructure(env.WORKSPACE, UUAA, SCRIPTS_DEVOPS)
+								if (UUAA == "SPECIFIC"){ 
+									//utilsSpecific.createReleaseStructure(env.WORKSPACE, UUAA, SCRIPTS_DEVOPS)
 								}
 							}
 						
