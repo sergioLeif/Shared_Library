@@ -1,4 +1,4 @@
-package org.specific.sharedLibraries
+package org.site.specific.sharedLibraries
 
 @GrabResolver(name='CENTRAL', root='http://urlPrueba:8085/artifactory/repo1' , m2Compatible=true)
 @Grapes(
